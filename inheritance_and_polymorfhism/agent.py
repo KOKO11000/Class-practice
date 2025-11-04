@@ -1,17 +1,13 @@
 class Agent:
-    total = 0
+    total_agents = 0
     def __init__(self, code_name: str, clearance_level: int):
         self.code_name = code_name
         self._clearance_level = clearance_level
-    
-
-    def add_agent(self):
-        self.total += 1
-        print(self.total)
+        Agent.total_agents += 1
 
     def sub_agent(self):
-        self.total -= 1
-        print(self.total)
+        Agent.total_agents -= 1
+        print(f" Total Agents:{Agent.total_agents};")
 
     def get_clearence_level(self):
         return self._clearance_level
@@ -45,7 +41,7 @@ class FieldAgent(Agent):
         self.region = region
 
     def report(self):
-        print(f"Agent {self.code_name}. Clearance level: {self._clearance_level}, is region: {self.region}")
+        print(f"Agent: {self.code_name}. Clearance level: {self._clearance_level}, is region: {self.region}")
 
 class CyberAgent(Agent):
     def __init__(self, code_name, clearance_level,specialty):
@@ -58,12 +54,13 @@ class CyberAgent(Agent):
 
 if __name__ == "__main__":
 
-    clearance_level = Agent("Aharon", 5)
+    clearance_level = FieldAgent("Aharon", 5, "Spean")
     a1 =CyberAgent('david',2,"snipe")
     a2 =CyberAgent("007",3,"assaian")
     a3 =FieldAgent("07",3,"Yaman")
     a4 =FieldAgent("7",3,"Iran")
-    list_of_agent = [a1,a2,a3,a4]
+    list_of_agent = [a1,a2,a3,a4,clearance_level]
     for i in list_of_agent:
-        print(i.add_agent())
+        
         i.report()
+    print(Agent.total_agents)
